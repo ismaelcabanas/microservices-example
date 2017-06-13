@@ -1,0 +1,10 @@
+eureka:
+  client:
+      serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+
+logging:
+  config: classpath:logback-dev.xml
+
+logback.access:
+  config: classpath:logback-access-dev.xml

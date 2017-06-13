@@ -1,0 +1,6 @@
+info:
+  component: Product Microservice
+
+spring:
+  application:
+    name: ms-product
