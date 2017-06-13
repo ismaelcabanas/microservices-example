@@ -30,5 +30,5 @@ Luego, colocarnos en el directorio donde está el fichero Dockerfile y ejecutar 
 
 Para arrancar un contenedor de la imagen Docker
 
-`docker run -t --rm -p 8761:8761 --name ms-product ismaelcabanas/ms-product:1.0.0`
+`docker run -t --rm -p 8000:8000 --name ms-product ismaelcabanas/ms-product:1.0.0`
 
