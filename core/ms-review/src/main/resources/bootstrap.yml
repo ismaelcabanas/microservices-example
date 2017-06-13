@@ -1,0 +1,6 @@
+info:
+  component: Review Microservice
+
+spring:
+  application:
+    name: ms-review

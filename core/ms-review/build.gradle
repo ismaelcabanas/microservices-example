@@ -1,0 +1,67 @@
+group 'cabanas.garcia.ismael.microservices.core'
+version '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/release" }
+}
+
+buildscript {
+    ext {
+        springBootVersion = '1.4.5.RELEASE'
+        springCloudBomVersion = 'Camden.SR6'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath group: "org.springframework.boot", name: "spring-boot-gradle-plugin", version: springBootVersion
+        classpath group: "gradle.plugin.com.gorylenko.gradle-git-properties", name: "gradle-git-properties", version: "1.4.16"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+//apply from: 'build-application.gradle'
+//apply from: 'build-git.gradle'
+//apply from: 'build-static-code-analysis.gradle'
+
+targetCompatibility = 1.8
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-starter-parent:${springCloudBomVersion}"
+    }
+}
+
+dependencies {
+    // Spring dependencies
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.cloud:spring-cloud-starter-eureka")
+
+    // Logging
+    compile("ch.qos.logback:logback-classic:1.1.11")
+    compile("net.rakugakibox.springbootext:spring-boot-ext-logback-access:1.2")
+
+    // Api docs
+    compile("io.springfox:springfox-swagger2:2.6.1")
+
+    // Spring monitoring and tooling to inspect things at runtime
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
+    // Jackson Java time support
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.4")
+
+    // Standard set of test tooling
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+}
+
+bootRun.doFirst {
+    systemProperty "spring.profiles.active", "dev"
+}
+
