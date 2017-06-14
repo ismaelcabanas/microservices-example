@@ -16,7 +16,7 @@ public class ProductController implements ProductControllerApiDocumentation{
 
     @Override
     @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
-    public ResponseEntity<ProductResponseDTO> read(@PathVariable(required = true, value = "id") int id) {
+    public ResponseEntity<ProductResponseDTO> getProduct(@PathVariable(required = true, value = "id") int id) {
 
         ProductResponseDTO response = ProductResponseDTO.ProductResponseDTOBuilder.aProductResponseDTO()
                 .withId(id)

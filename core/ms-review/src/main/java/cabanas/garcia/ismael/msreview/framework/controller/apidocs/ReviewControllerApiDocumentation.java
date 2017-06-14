@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface ReviewControllerApiDocumentation {
 
-    @ApiOperation(value = "reverse", nickname = "reverse", response = List.class)
+    @ApiOperation(value = "getReviews", nickname = "getReviews", response = List.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = List.class),
             @ApiResponse(code = 201, message = "Created"),

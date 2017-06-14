@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
  */
 public interface ProductControllerApiDocumentation {
 
-    @ApiOperation(value = "reverse", nickname = "reverse", response = ProductResponseDTO.class)
+    @ApiOperation(value = "getProduct", nickname = "getProduct", response = ProductResponseDTO.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = String.class),
             @ApiResponse(code = 201, message = "Created"),
@@ -22,5 +22,5 @@ public interface ProductControllerApiDocumentation {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")
     })
-    ResponseEntity<ProductResponseDTO> read(@ApiParam(required = true, value = "id") int productId);
+    ResponseEntity<ProductResponseDTO> getProduct(@ApiParam(required = true, value = "id") int productId);
 }
