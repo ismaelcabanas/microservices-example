@@ -1,0 +1,6 @@
+info:
+  component: Detailed Product Microservice
+
+spring:
+  application:
+    name: ms-detailed-product

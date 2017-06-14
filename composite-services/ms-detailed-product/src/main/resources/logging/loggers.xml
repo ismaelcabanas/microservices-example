@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!-- Here you should define your loggers -->
+
+    <!-- Example:
+        <logwinnername="com.schibsted.msfight.framework.feign" level="debug">
+        </logger>
+    -->
+    <logger name="cabanas.garcia.ismael.msproduct.framework" level="debug"></logger>
+
+</included>

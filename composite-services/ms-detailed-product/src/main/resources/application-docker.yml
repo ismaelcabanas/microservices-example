@@ -1,0 +1,10 @@
+# For deployment in Docker containers
+spring:
+  profiles: docker
+  cloud:
+    config:
+      discovery:
+        enabled: false
+      uri: https://${MY_CONFIG_USER}:${MY_CONFIG_PWD}@config:8888
+    discovery:
+      enabled: false

@@ -1,0 +1,11 @@
+server:
+  port: ${PORT:8000}
+
+spring:
+  main:
+    banner-mode: "OFF"  # Deshabilita el banner de Spring Boot
+
+# Discovery Server Access
+eureka:
+  instance:
+    preferIpAddress: false
