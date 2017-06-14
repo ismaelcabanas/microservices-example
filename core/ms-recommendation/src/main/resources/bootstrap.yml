@@ -1,0 +1,6 @@
+info:
+  component: Product Recommendation Microservice
+
+spring:
+  application:
+    name: ms-recommendation
