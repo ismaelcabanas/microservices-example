@@ -13,3 +13,5 @@ gradle-app.setting
 
 # Jenv
 .version
+
+out/
