@@ -2,10 +2,10 @@ package cabanas.garcia.ismael.msdetailedproduct.framework.repository;
 
 import cabanas.garcia.ismael.msdetailedproduct.domain.model.Review;
 import cabanas.garcia.ismael.msdetailedproduct.domain.repository.ReviewRepository;
-import feign.Param;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -17,5 +17,5 @@ public interface ReviewFeignRepository extends ReviewRepository {
 
     @RequestMapping(method = RequestMethod.GET, value = "/reviews?productId={productId}")
     @Override
-    List<Review> find(@Param(value = "productId") int productId);
+    List<Review> find(@RequestParam(value = "productId") int productId);
 }

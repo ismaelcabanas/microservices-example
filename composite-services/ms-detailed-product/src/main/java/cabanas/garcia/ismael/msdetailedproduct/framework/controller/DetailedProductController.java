@@ -1,10 +1,10 @@
 package cabanas.garcia.ismael.msdetailedproduct.framework.controller;
 
-import cabanas.garcia.ismael.msdetailedproduct.domain.model.ProductAggregated;
+import cabanas.garcia.ismael.msdetailedproduct.domain.model.DetailedProduct;
 import cabanas.garcia.ismael.msdetailedproduct.domain.service.DetailedProductService;
 import cabanas.garcia.ismael.msdetailedproduct.framework.adapter.DetailedProductAdapter;
 import cabanas.garcia.ismael.msdetailedproduct.framework.controller.apidocs.DetailedProductControllerApiDocumentation;
-import cabanas.garcia.ismael.msdetailedproduct.framework.dto.ProductResponseDTO;
+import cabanas.garcia.ismael.msdetailedproduct.framework.dto.DetailedProductResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,11 +27,11 @@ public class DetailedProductController implements DetailedProductControllerApiDo
 
     @Override
     @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
-    public ResponseEntity<ProductResponseDTO> getDetailedProduct(@PathVariable(required = true, value = "id") int id) {
+    public ResponseEntity<DetailedProductResponseDTO> getDetailedProduct(@PathVariable(required = true, value = "id") int id) {
 
-        ProductAggregated product = detailedProductService.detailedProduct(id);
+        DetailedProduct product = detailedProductService.detailedProduct(id);
 
-        ProductResponseDTO response = DetailedProductAdapter.map(product);
+        DetailedProductResponseDTO response = DetailedProductAdapter.map(product);
 
         return ResponseEntity.ok(response);
 

@@ -1,6 +1,6 @@
 package cabanas.garcia.ismael.msdetailedproduct.framework.controller.apidocs;
 
-import cabanas.garcia.ismael.msdetailedproduct.framework.dto.ProductResponseDTO;
+import cabanas.garcia.ismael.msdetailedproduct.framework.dto.DetailedProductResponseDTO;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
  */
 public interface DetailedProductControllerApiDocumentation {
 
-    @ApiOperation(value = "getDetailedProduct", nickname = "getDetailedProduct", response = ProductResponseDTO.class)
+    @ApiOperation(value = "getDetailedProduct", nickname = "getDetailedProduct", response = DetailedProductResponseDTO.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = String.class),
             @ApiResponse(code = 201, message = "Created"),
@@ -22,5 +22,5 @@ public interface DetailedProductControllerApiDocumentation {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")
     })
-    ResponseEntity<ProductResponseDTO> getDetailedProduct(@ApiParam(required = true, value = "id") int id);
+    ResponseEntity<DetailedProductResponseDTO> getDetailedProduct(@ApiParam(required = true, value = "id") int id);
 }

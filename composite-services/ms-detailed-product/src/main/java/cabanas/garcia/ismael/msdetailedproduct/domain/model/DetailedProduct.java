@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by ismaelcabanas on 14/6/17.
  */
-public class ProductAggregated {
+public class DetailedProduct {
 
     private Product product;
 
@@ -13,8 +13,16 @@ public class ProductAggregated {
 
     private List<Recommendation> recommendations;
 
-    public Product getProduct() {
-        return product;
+    public int getProductId(){
+        return this.product.getId();
+    }
+
+    public int getProductWeight(){
+        return this.product.getWeight();
+    }
+
+    public String getProductName(){
+        return this.product.getName();
     }
 
     public List<Review> getReviews() {
@@ -53,12 +61,12 @@ public class ProductAggregated {
             return this;
         }
 
-        public ProductAggregated build() {
-            ProductAggregated productAggregated = new ProductAggregated();
-            productAggregated.reviews = this.reviews;
-            productAggregated.recommendations = this.recommendations;
-            productAggregated.product = this.product;
-            return productAggregated;
+        public DetailedProduct build() {
+            DetailedProduct detailedProduct = new DetailedProduct();
+            detailedProduct.reviews = this.reviews;
+            detailedProduct.recommendations = this.recommendations;
+            detailedProduct.product = this.product;
+            return detailedProduct;
         }
     }
 }

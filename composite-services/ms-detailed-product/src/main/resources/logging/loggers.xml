@@ -6,6 +6,6 @@
         <logwinnername="com.schibsted.msfight.framework.feign" level="debug">
         </logger>
     -->
-    <logger name="cabanas.garcia.ismael.msproduct.framework" level="debug"></logger>
+    <logger name="cabanas.garcia.ismael.msdetailedproduct" level="debug"></logger>
 
 </included>
