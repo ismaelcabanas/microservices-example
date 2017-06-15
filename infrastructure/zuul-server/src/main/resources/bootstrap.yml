@@ -1,0 +1,6 @@
+info:
+  component: Zuul Server
+
+spring:
+  application:
+    name: zuul-server
