@@ -13,11 +13,17 @@ Microservicio de productos.
 
 ## Run with Gradle
 
-`./gradlew bootRun`
+`./gradlew bootRun` o `PORT=8001 ./gradlew bootRun' si queremos establecer
+la variable de entorno PORT para, en este caso, establecer el puerto donde
+arrancará el microservicio.
+
+Para debuggear el microservicio de forma remota `./gradlew bootRun --debug-jvm`
 
 ## Run with Maven
 
-`mvn clean spring-boot:run
+`mvn clean spring-boot:run` o `mvn clean spring-boot:run -DPORT=8001` si queremos establecer
+la variable de entorno PORT para, en este caso, establecer el puerto donde
+arrancará el microservicio
 
 ## Run with Docker
 
