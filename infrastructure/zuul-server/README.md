@@ -20,3 +20,8 @@ Luego, colocarnos en el directorio donde está el fichero Dockerfile y ejecutar 
 Para arrancar un contenedor de la imagen Docker
 
 `docker run -t --rm -p 8080:8080 --name zuul-server ismaelcabanas/zuul-server:1.0.0`
+
+## Comprobar los enrutamientos
+
+Una vez el servidor Zuul se ha desplegado, se puede consultar el endpoint **/routes**
+para verfificar los enrutamientos disponibles.
