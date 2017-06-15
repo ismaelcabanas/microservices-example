@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by ismaelcabanas on 14/6/17.
  */
-@FeignClient(value = "ms-recommendation", decode404 = true)
+@FeignClient(value = "ms-recommendation", decode404 = true, fallback = RecommendationFeignRepositoryHystrixFallback.class)
 public interface RecommendationFeignRepository extends RecommendationRepository {
 
     @RequestMapping(method = RequestMethod.GET, value = "/recommendations?productId={productId}")

@@ -47,8 +47,12 @@ dependencyManagement {
 dependencies {
     // Spring dependencies
     compile("org.springframework.boot:spring-boot-starter-web")
+    // Service discovery client
     compile("org.springframework.cloud:spring-cloud-starter-eureka")
+    // Feign for calling remote microservices
     compile("org.springframework.cloud:spring-cloud-starter-feign")
+    // Hystrix for Circuit Breaker
+    compile("org.springframework.cloud:spring-cloud-starter-hystrix")
 
     // Logging
     compile("ch.qos.logback:logback-classic:1.1.11")

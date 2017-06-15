@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by ismaelcabanas on 14/6/17.
  */
-@FeignClient(value = "ms-review", decode404 = true)
+@FeignClient(value = "ms-review", decode404 = true, fallback = ReviewFeignRepositoryHystrixFallback.class)
 public interface ReviewFeignRepository extends ReviewRepository {
 
     @RequestMapping(method = RequestMethod.GET, value = "/reviews?productId={productId}")

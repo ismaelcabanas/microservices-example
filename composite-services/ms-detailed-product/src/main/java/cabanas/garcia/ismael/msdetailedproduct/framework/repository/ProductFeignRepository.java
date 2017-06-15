@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by ismaelcabanas on 14/6/17.
  */
-@FeignClient(value = "ms-product", decode404 = true)
+@FeignClient(value = "ms-product", decode404 = true, fallback = ProducFeignRepositorytHystrixFallback.class)
 public interface ProductFeignRepository extends ProductRepository {
 
     @RequestMapping(method = RequestMethod.GET, value = "/products/{id}")
     @Override
     Product findById(@PathVariable("id") int productId);
+
 }
