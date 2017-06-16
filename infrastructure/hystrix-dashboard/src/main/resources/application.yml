@@ -1,0 +1,6 @@
+server:
+  port: ${HYSTRIX_DASHBOARD_PORT:9000}
+
+spring:
+  main:
+    banner-mode: "OFF"  # Deshabilita el banner de Spring Boot

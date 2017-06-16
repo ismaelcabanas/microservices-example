@@ -1,0 +1,6 @@
+info:
+  component: Hystrix Dashboard monitor
+
+spring:
+  application:
+    name: hystrix-dashboard
