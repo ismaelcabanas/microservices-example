@@ -2,6 +2,7 @@ package cabanas.garcia.ismael.microservices.infrastructure.server.discovery.eure
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.system.ApplicationPidFileWriter;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
@@ -14,6 +15,9 @@ public class EurekaServerApplication {
     public static void main(String[] args){
         // this property sets a pretty output in actuator metrics
         System.setProperty("spring.jackson.serialization.INDENT_OUTPUT", "true");
-        SpringApplication.run(EurekaServerApplication.class, args);
+
+        SpringApplication eurekaServerApplication = new SpringApplication(EurekaServerApplication.class);
+        eurekaServerApplication.addListeners(new ApplicationPidFileWriter("eureka-server.pid"));
+        eurekaServerApplication.run(args);
     }
 }
