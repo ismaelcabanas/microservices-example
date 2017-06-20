@@ -5,11 +5,27 @@ Microservicio de productos.
 
 ## Build with Gradle
 
-`./gradlew build`
+`./gradlew clean build`
+
+### Ejecución de tests unitarios
+
+`./gradlew clean test`
+
+### Ejecución de tests integrados
+
+`./gradlew clean integrationTest`
 
 ## Build with Maven
 
 `mvn clean install`
+
+### Ejecución de tests unitarios
+
+`mvn clean test -P dev`
+
+### Ejecución de tests integrados
+
+`mvn clean verify -P integration-test`
 
 ## Run with Gradle
 
