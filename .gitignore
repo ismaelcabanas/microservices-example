@@ -15,3 +15,5 @@ gradle-app.setting
 .version
 
 out/
+
+**/.DS_Store
