@@ -4,6 +4,10 @@ version '1.0.0-SNAPSHOT'
 repositories {
     mavenCentral()
     maven { url "https://repo.spring.io/release" }
+    maven {
+        // docker-compose-rule is published on bintray
+        url 'https://dl.bintray.com/palantir/releases'
+    }
 }
 
 buildscript {
@@ -18,6 +22,7 @@ buildscript {
     dependencies {
         classpath group: "org.springframework.boot", name: "spring-boot-gradle-plugin", version: springBootVersion
         classpath group: "gradle.plugin.com.gorylenko.gradle-git-properties", name: "gradle-git-properties", version: "1.4.16"
+        classpath group: "org.unbroken-dome.gradle-plugins", name: "gradle-testsets-plugin", version: "1.2.0"
     }
 }
 
@@ -25,12 +30,30 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'org.unbroken-dome.test-sets'
 
 //apply from: 'build-application.gradle'
 //apply from: 'build-git.gradle'
 //apply from: 'build-static-code-analysis.gradle'
 
 targetCompatibility = 1.8
+
+testSets {
+    integrationTest {dirName = 'integration-test'}
+}
+
+// para indicar que la tarea integrationTest se ejecuta antes de la tarea check y que ésta fallará si la tarea integrationTest falla
+check.dependsOn integrationTest
+
+// para indicar que la tarea de integrationTest se debe ejecutar después de la tarea test
+integrationTest.mustRunAfter test
+
+// para indicar que los reports de unit e integration-test vayan a diferentes directorios
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+}
+
+
 
 dependencyManagement {
     imports {
@@ -56,9 +79,45 @@ dependencies {
     // Jackson Java time support
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.4")
 
+    // JDBC
+    compile("org.springframework:spring-jdbc")
+    compile('org.postgresql:postgresql:9.4.+')
+    compile('com.zaxxer:HikariCP:2.4.3')
+    compile("org.flywaydb:flyway-core:4.0.3")
+
     // Standard set of test tooling
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('com.palantir.docker.compose:docker-compose-rule:0.28.1')
 
+    integrationTestCompile(
+            //Add dependencies that are required to compile
+            //our integration tests.
+    )
+    integrationTestRuntime(
+            //Add dependencies that are required to run
+            //our integration tests.
+    )
+}
+
+test {
+    useJUnit {
+        includeCategories 'cabanas.garcia.ismael.msproduct.UnitTests'
+    }
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
+// 1. indicamos que los tests de integración deben usar Junit porque vamos a hacer cambios en su configuración
+// 2. configuramos JUnit para que ejecute únicamente aquellos tests que estén categorizados con IntegrationTests
+// 3. aseguramos que Gradle muestra la información por consola de nuestros tests de integración
+integrationTest {
+    useJUnit {
+        includeCategories 'cabanas.garcia.ismael.msproduct.IntegrationTests'
+    }
+    testLogging {
+        showStandardStreams = true
+    }
 }
 
 bootRun.doFirst {
