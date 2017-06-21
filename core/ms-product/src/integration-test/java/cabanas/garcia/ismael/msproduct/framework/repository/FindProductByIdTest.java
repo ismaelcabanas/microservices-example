@@ -21,12 +21,21 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 /**
- * Created by ismaelcabanas on 19/6/17.
+ * Created by ismaelcabanas on 20/6/17.
  *
+ * Listeners utilizados para la ejecución de tests:
+ *
+ * 1.- DependencyInjectionTestExecutionListener proporciona soporte para la inyección de dependencias e inicialización
+ * de las instancias de test.
+ *
+ * 2.- TransactionalTestExecutionListener proporciona soporte para test gestionados por transacciones (@Transactional)
+ *
+ * 3.- DbUnitTestExecutionListener proporciona soporte para las features propoporcionadas por la librería Spring Test DBUnit
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {IntegrationTestContext.class}, properties = {"spring.cloud.config.enabled=false", "spring.cloud.bus.enabled=false", "spring.cloud.discovery.enabled=false"})
@@ -35,33 +44,48 @@ import static org.assertj.core.api.Assertions.assertThat;
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class
 })
-@DatabaseSetup(value = "/datasets/empty-products.xml", type = DatabaseOperation.CLEAN_INSERT)
-@DatabaseTearDown(value = "/datasets/empty-products.xml", type = DatabaseOperation.DELETE_ALL)
+@DatabaseSetup(value = "/datasets/products.xml", type = DatabaseOperation.CLEAN_INSERT)
+@DatabaseTearDown(value = "/datasets/products.xml", type = DatabaseOperation.DELETE_ALL)
 @DbUnitConfiguration(dataSetLoader = ReplacementDataSetLoader.class)
 @Category(IntegrationTests.class)
-public class CreateProductTest {
+public class FindProductByIdTest {
 
     @Autowired
-    private ProductRepository repository;
+    private ProductRepository sut;
 
     @Test
-    public void should_persist_product(){
+    public void should_return_optional_that_contains_found_product_when_product_is_found(){
         // given
-        Product raspberryPi = Product.ProductBuilder.builder()
-                .withId(Products.RaspberryPi.ID)
-                .withName(Products.RaspberryPi.NAME)
-                .withWeight(Products.RaspberryPi.WEIGHT)
-                .build();
 
         // when
-        repository.create(raspberryPi);
+        Optional<Product> actual = sut.findById(Products.RaspberryPi.ID);
 
         // then
-        Product found = repository.findById(raspberryPi.getId()).get();
+        assertThat(actual.isPresent()).isTrue();
+    }
 
-        assertThat(found.getId()).isEqualTo(Products.RaspberryPi.ID);
-        assertThat(found.getName()).isEqualTo(Products.RaspberryPi.NAME);
-        assertThat(found.getWeight()).isEqualTo(Products.RaspberryPi.WEIGHT);
+    @Test
+    public void should_return_correct_information_when_product_is_found(){
+        // given
+
+        // when
+        Product actual = sut.findById(Products.RaspberryPi.ID).get();
+
+        // then
+        assertThat(actual.getId()).isEqualTo(Products.RaspberryPi.ID);
+        assertThat(actual.getName()).isEqualTo(Products.RaspberryPi.NAME);
+        assertThat(actual.getWeight()).isEqualTo(Products.RaspberryPi.WEIGHT);
+    }
+
+    @Test
+    public void should_return_empty_optional_when_product_is_not_found(){
+        // given
+
+        // when
+        Optional<Product> actual = sut.findById(Products.UNKNOWN_PRODUCT_ID);
+
+        // then
+        assertThat(actual.isPresent()).isFalse();
     }
 
 }
