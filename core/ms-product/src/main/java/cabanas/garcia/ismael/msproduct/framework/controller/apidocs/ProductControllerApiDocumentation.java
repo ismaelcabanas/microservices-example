@@ -22,5 +22,5 @@ public interface ProductControllerApiDocumentation {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")
     })
-    ResponseEntity<ProductResponseDTO> getProduct(@ApiParam(required = true, value = "id") int productId);
+    ResponseEntity<ProductResponseDTO> getProduct(@ApiParam(required = true, value = "id") Long productId);
 }

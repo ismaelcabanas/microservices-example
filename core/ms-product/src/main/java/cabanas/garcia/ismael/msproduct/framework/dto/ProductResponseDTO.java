@@ -4,13 +4,13 @@ package cabanas.garcia.ismael.msproduct.framework.dto;
  * Created by ismaelcabanas on 13/6/17.
  */
 public class ProductResponseDTO {
-    private int id;
+    private Long id;
     private String name;
     private int weight;
 
 
     public static final class ProductResponseDTOBuilder {
-        private int id;
+        private Long id;
         private String name;
         private int weight;
 
@@ -21,7 +21,7 @@ public class ProductResponseDTO {
             return new ProductResponseDTOBuilder();
         }
 
-        public ProductResponseDTOBuilder withId(int id) {
+        public ProductResponseDTOBuilder withId(Long id) {
             this.id = id;
             return this;
         }
@@ -45,7 +45,7 @@ public class ProductResponseDTO {
         }
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
