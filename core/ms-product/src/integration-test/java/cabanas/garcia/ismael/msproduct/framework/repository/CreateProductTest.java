@@ -35,7 +35,7 @@ import static org.assertj.core.api.Assertions.assertThat;
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class
 })
-@DatabaseSetup(value = "/datasets/empty-products.xml", type = DatabaseOperation.CLEAN_INSERT)
+@DatabaseSetup(value = "/datasets/empty-products.xml")
 @DatabaseTearDown(value = "/datasets/empty-products.xml", type = DatabaseOperation.DELETE_ALL)
 @DbUnitConfiguration(dataSetLoader = ReplacementDataSetLoader.class)
 @Category(IntegrationTests.class)
