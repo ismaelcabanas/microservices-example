@@ -18,7 +18,7 @@ public class ProductController implements ProductControllerApiDocumentation{
     @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
     public ResponseEntity<ProductResponseDTO> getProduct(@PathVariable(required = true, value = "id") int id) {
 
-        ProductResponseDTO response = ProductResponseDTO.ProductResponseDTOBuilder.aProductResponseDTO()
+        ProductResponseDTO response = ProductResponseDTO.ProductResponseDTOBuilder.builder()
                 .withId(id)
                 .withName("Test product")
                 .withWeight(100)

@@ -17,7 +17,7 @@ public class ProductResponseDTO {
         private ProductResponseDTOBuilder() {
         }
 
-        public static ProductResponseDTOBuilder aProductResponseDTO() {
+        public static ProductResponseDTOBuilder builder() {
             return new ProductResponseDTOBuilder();
         }
 
