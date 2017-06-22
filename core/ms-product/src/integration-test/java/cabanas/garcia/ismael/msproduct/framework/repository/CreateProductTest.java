@@ -1,9 +1,6 @@
 package cabanas.garcia.ismael.msproduct.framework.repository;
 
-import cabanas.garcia.ismael.msproduct.IntegrationTestContext;
-import cabanas.garcia.ismael.msproduct.IntegrationTests;
-import cabanas.garcia.ismael.msproduct.Products;
-import cabanas.garcia.ismael.msproduct.ReplacementDataSetLoader;
+import cabanas.garcia.ismael.msproduct.*;
 import cabanas.garcia.ismael.msproduct.domain.model.Product;
 import cabanas.garcia.ismael.msproduct.domain.repository.ProductRepository;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
@@ -16,6 +13,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
@@ -38,6 +36,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DatabaseSetup(value = "/datasets/empty-products.xml")
 @DatabaseTearDown(value = "/datasets/empty-products.xml", type = DatabaseOperation.DELETE_ALL)
 @DbUnitConfiguration(dataSetLoader = ReplacementDataSetLoader.class)
+@ActiveProfiles(value = Profiles.DEV)
 @Category(IntegrationTests.class)
 public class CreateProductTest {
 

@@ -1,9 +1,6 @@
 package cabanas.garcia.ismael.msproduct.framework.controller;
 
-import cabanas.garcia.ismael.msproduct.IntegrationTestContext;
-import cabanas.garcia.ismael.msproduct.IntegrationTests;
-import cabanas.garcia.ismael.msproduct.Products;
-import cabanas.garcia.ismael.msproduct.ReplacementDataSetLoader;
+import cabanas.garcia.ismael.msproduct.*;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -18,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
@@ -48,6 +46,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DatabaseSetup(value = "/datasets/products.xml")
 @DatabaseTearDown(value = "/datasets/products.xml", type = DatabaseOperation.DELETE_ALL)
 @DbUnitConfiguration(dataSetLoader = ReplacementDataSetLoader.class)
+@ActiveProfiles(value = Profiles.DEV)
 @Category(IntegrationTests.class)
 public class GetProductTest {
 
