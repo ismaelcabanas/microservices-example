@@ -122,6 +122,9 @@ integrationTest {
         showStandardStreams = true
     }
 }
+integrationTest.doFirst {
+    systemProperty "spring.profiles.active", "dev"
+}
 
 bootRun.doFirst {
     systemProperty "spring.profiles.active", "dev"
