@@ -12,3 +12,15 @@ logging:
 
 logback.access:
   config: classpath:logback-access-dev.xml
+
+kafka:
+  zookeeper:
+    connect:  "192.168.99.100:2181"
+  bootstrap:
+    servers: "192.168.99.100:9092"
+
+spring:
+  datasource:
+    url: "jdbc:postgresql://192.168.99.100:5432/postgres"
+    username: postgres
+    password: forkyou-product

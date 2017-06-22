@@ -4,12 +4,19 @@ server:
 spring:
   main:
     banner-mode: "OFF"  # Deshabilita el banner de Spring Boot
-  datasource:
-    url: "jdbc:postgresql://192.168.99.100:5432/postgres"
-    username: postgres
-    password: forkyou-product
 
 # Discovery Server Access
 eureka:
   instance:
     preferIpAddress: false
+
+kafka:
+  product:
+    topic: "pub-create-product"
+    groupId: "product-consumer"
+  acks: "all"
+  retries: 0
+  batch:
+    size: "1000000"
+  linger:
+    ms: "500"
