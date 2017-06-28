@@ -1,11 +1,9 @@
-server:
-  port: ${PORT:0}
-
-
 eureka:
   client:
-      serviceUrl:
-        defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: false
+#    fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: http://192.168.99.100:10000/eureka/v2/
 
 logging:
   config: classpath:logback-dev.xml
@@ -24,3 +22,6 @@ spring:
     url: "jdbc:postgresql://192.168.99.100:5432/postgres"
     username: postgres
     password: forkyou-product
+  cloud:
+    discovery:
+      enabled: false

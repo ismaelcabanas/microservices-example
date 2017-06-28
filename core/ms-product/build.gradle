@@ -85,6 +85,10 @@ dependencies {
     compile('com.zaxxer:HikariCP:2.4.3')
     compile("org.flywaydb:flyway-core:4.0.3")
 
+    // Kafka
+    compile 'org.apache.kafka:kafka-clients:0.8.2.2'
+    compile 'org.apache.kafka:kafka_2.11:0.8.2.2'
+
     // Standard set of test tooling
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('com.palantir.docker.compose:docker-compose-rule:0.28.1')
@@ -94,7 +98,8 @@ dependencies {
             //our integration tests.
             'org.dbunit:dbunit:2.5.3',
             'com.github.springtestdbunit:spring-test-dbunit:1.3.0',
-            'org.flywaydb.flyway-test-extensions:flyway-dbunit-test:4.0'
+            'org.flywaydb.flyway-test-extensions:flyway-dbunit-test:4.0',
+            'org.apache.curator:curator-test:2.8.0'
     )
     integrationTestRuntime(
             //Add dependencies that are required to run
